@@ -90,9 +90,25 @@ describe('Sorting', function(){
 	})
 });
 
-/*describe('Filter', function(){
+describe('Filter', function(){
 	describe('default filter [ stationary products ]', function(){
-		//filterStationaryProducts();
-		console.table(products)
+		function filterStationaryProducts(){
+
+		}
+		var stationaryProducts = filterStationaryProducts();
+		console.table(filterStationaryProducts)
 	});
-});*/
+
+	describe('any list by any criteria', function(){
+		function filter(){
+
+		}
+		describe('cost products [cost > 50 ]', function(){
+
+		});
+		describe('understocked products [units < 50]', function(){
+
+		})
+
+	})
+});

@@ -3,6 +3,59 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Calculator-2</title>
+	<style>
+		.positive{
+			color : green;
+		}
+		.negative{
+			color : red;
+		}
+	</style>
+	<script src="jquery-3.4.1.js"></script>
+	<script>
+		$(function(){
+			function calculate(){
+				var n1 = parseInt($('#txtNumber1').val()),
+					n2 = parseInt($('#txtNumber2').val()),
+					operator = $('#selectOperator').val(),
+					result = 0;
+
+				switch(operator){
+					case 'add':
+						result = n1 + n2;
+						break;
+					case 'subtract':
+						result = n1 - n2;
+						break;
+					case 'multiply':
+						result = n1 * n2;
+						break;
+					case 'divide':
+						result = n1 / n2;
+						break;
+				}
+				$('#divResult').html(isNaN(result) ? '' : result );
+				if (result >= 0){
+					$('#divResult')
+						.addClass('positive')
+						.removeClass('negative')
+				} else {
+					$('#divResult')
+						.removeClass('positive')
+						.addClass('negative')
+				}
+			}
+
+			/*$('#txtNumber1').keyup(calculate);
+			$('#txtNumber2').keyup(calculate);*/
+
+			$('#txtNumber1, #txtNumber2').keyup(calculate);
+			$('#selectOperator').change(calculate);
+
+			
+			
+		});
+	</script>
 </head>
 <body>
 	<h1>Calculator - 2</h1>
@@ -15,7 +68,6 @@
 		<option value="divide">Divide</option>
 	</select>
 	<input type="number" name="" id="txtNumber2">
-	<input type="button" value="Calculate" id="btnCalculate">
 	<div id="divResult">[ 0 ]</div>
 </body>
 </html>

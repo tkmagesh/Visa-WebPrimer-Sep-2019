@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Task Manager</title>
+	<style>
+		ol{
+			list-style: none;
+			-webkit-padding-start : 0px;
+			width: 500px;
+		}
+		li{
+			margin-bottom: 10px;
+			border : 1px solid gray;
+			padding : 10px;
+			border-radius: 5px;
+			background-color: #e7e7e7;
+		}
+		.closed{
+			color : red;
+			text-decoration: line-through;
+			font-style: italic;
+			font-weight: bold;
+		}
+		li{
+			cursor: pointer;
+		}
+	</style>
+	<script src="jquery-3.4.1.js"></script>
+</head>
+<body>
+	<h1>Task Manager</h1>
+	<hr>
+	<div>
+		<span id="closedCount" class="closed">1</span>
+		<span> / </span>
+		<span id="totalCount">2</span>
+	</div>
+	<label for="">Task :</label>
+	<input type="text" name="" id="txtTaskName">
+	<input type="button" value="Add New" id="btnAddNew">
+	<input type="button" value="Remove Closed" id="btnRemoveClosed">
+	<ol id="olTaskList">
+		<li>This is task -1</li>
+		<li class="closed" id="task-2">This is task -2</li>
+	</ol>
+</body>
+</html>

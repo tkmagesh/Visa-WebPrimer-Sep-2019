@@ -5,6 +5,17 @@
 	<title>jQuery Intro</title>
 	<script src="jquery-3.4.1.js"></script>
 	<script>
+		function onBtnGreetClick(){
+			var userName = $('#txtUserName').val();
+			var greetMessage = 'Hi ' + userName + ', Have a nice day!';
+			$('#message').html(greetMessage);
+		}
+		function init(){
+			$('#btnGreet').click(onBtnGreetClick);
+		}
+		//window.addEventListener('load', init);
+		//$(document).ready(init);
+		$(init);
 		
 	</script>
 </head>

@@ -14,6 +14,13 @@ function describe(title, fn){
 	console.groupEnd();	
 }
 
+function describeGroup(obj){
+	for(var key in obj)
+		describe('Key - [' + key + ']', function(){
+			console.table(obj[key]);
+		});
+}
+
 describe('Default List', function(){
 	console.table(products);
 });
@@ -163,5 +170,40 @@ describe('Filter', function(){
 			})
 		});
 
+	})
+});
+
+describe('GroupBy', function(){
+	describe('Default groupBy [products by category]', function(){
+		function groupProductsByCategory(){
+			var result = {};
+			for (var i = products.length - 1; i >= 0; i--) {
+				var key = products[i].category;
+				result[key] = result[key] || [];
+				result[key].push(products[i]);
+			}
+			return result;
+		}
+		var productsByCategory = groupProductsByCategory();
+		describeGroup(productsByCategory);
+	});
+	describe('any list by any key', function(){
+		function groupBy(list, keySelector){
+			var result = {};
+			for (var i = list.length - 1; i >= 0; i--) {
+				var key = keySelector(list[i]);
+				result[key] = result[key] || [];
+				result[key].push(list[i]);
+			}
+			return result;
+		}
+
+		describe('products by cost', function(){
+			var costKeySelector = function(product){
+				return product.cost <= 50 ? 'affrodable' : 'costly';
+			};
+			var productsByCost = groupBy(products, costKeySelector);
+			describeGroup(productsByCost);
+		})
 	})
 });

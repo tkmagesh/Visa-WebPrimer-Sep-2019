@@ -1,0 +1,60 @@
+Build a PubSub library
+
+	1. able to subscribe for an event
+	2. able to have multiple subscriptions for an event
+	3. able to have subscriptions with context
+	4. events should be able to be emitted
+	5. events should be able to be emitted with data
+	6. events should be able to be emitted with context
+	7. able to unsubscribe from an event
+	8. able to have support for multiple events
+	9. subscriptions should not be allowed to be manipulated from outside
+	10. allow chaining of operations
+
+
+1. 
+	pubsub.subscribe('event-1', callback)
+
+2. 
+	pubsub.subscribe('event-1', callback1, callback2, callbac3)
+
+	pubsub.subscribe('event-1', callback1)
+	pubsub.subscribe('event-1', callback2)
+	pubsub.subscribe('event-1', callback3)
+
+3. 	
+	pubsub.subscribe('event-1', [callback, context])
+
+4.
+	pubsub.emit('event-1')
+
+5. 
+	pubsub.emit('event-1', data1, data2, data3)
+
+6. 
+	pubsub.emit('event-1', data1, data2, data3)
+
+7. 
+	pubsub.unsubscribe('event-1', callback1)
+
+8.
+	pubsub.subscribe('event-2', callback);
+	pubsub.subscribe('event-3', callback);	
+
+9. 
+	
+	pubsub._subscriptions (should not be accessible)
+
+10. 
+	
+	pubsub
+		.subscribe('event-1', callback1, callback2, [callback3, context])
+		.emit('event-1', data1, data2)
+		.unsubscribe(callback2)
+		.emit('event-1', data);
+
+	
+
+
+
+

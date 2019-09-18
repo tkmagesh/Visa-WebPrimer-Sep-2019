@@ -18,7 +18,11 @@ function add(...args){
 	return args.length <= 1 ? parseArg(args[0]) : parseArg(args[0]) + add(args.slice(1));
 }
 
-
+var pub = {
+	emit : function(eventName, callback, data){
+		callback(data);
+	}
+}
 
 //As a method of an object
 //	this -> object

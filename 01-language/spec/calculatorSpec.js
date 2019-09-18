@@ -155,4 +155,13 @@ describe("A Calculator", function(){
 		//Assert
 		expect(result).toBe(expectedResult);
 	});
+
+	it("should call the given callback", function(){
+		var callback = jasmine.createSpy();
+
+		pub.emit('dummy-evt', callback, 100);
+
+		//expect(callback).toHaveBeenCalled();
+		expect(callback).toHaveBeenCalledWith(100);
+	})
 });

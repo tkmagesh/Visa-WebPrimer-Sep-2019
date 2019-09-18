@@ -27,22 +27,68 @@
 		}
 	</style>
 	<script src="jquery-3.4.1.js"></script>
+	<script>
+		$(function(){
+			function onTaskItemClick(){
+				$(this).toggleClass('closed');
+				displayStats();
+			}
+
+			function displayStats(){
+				var totalCount = $('#olTaskList > li').length,
+					closedCount = $('#olTaskList > li.closed').length;
+
+				$('#totalCount').html(totalCount);
+				$('#closedCount').html(closedCount);
+			}
+
+			$('#olTaskList').on('click', 'li', onTaskItemClick);
+
+			$('#btnAddNew').click(function(){
+				/*var taskName = $('#txtTaskName').val(),
+					$newTask = $('<li></li>').html(taskName).click(onTaskItemClick);
+				$('#olTaskList').append($newTask);*/
+
+				/*$('<li>')
+					.html($('#txtTaskName').val())
+					.click(onTaskItemClick)
+					.appendTo('#olTaskList');*/
+
+				$('<li>')
+					.html($('#txtTaskName').val())
+					.appendTo('#olTaskList')
+					.hide()
+					.fadeIn('slow');
+
+				displayStats();
+			});
+
+			$('#btnRemoveClosed').click(function(){
+				$('#olTaskList > li.closed')
+					.fadeOut(function(){
+						$(this).remove();
+						displayStats();
+					});
+
+				
+			})
+		});
+	</script>
 </head>
 <body>
 	<h1>Task Manager</h1>
 	<hr>
 	<div>
-		<span id="closedCount" class="closed">1</span>
+		<span id="closedCount" class="closed"></span>
 		<span> / </span>
-		<span id="totalCount">2</span>
+		<span id="totalCount"></span>
 	</div>
 	<label for="">Task :</label>
 	<input type="text" name="" id="txtTaskName">
 	<input type="button" value="Add New" id="btnAddNew">
 	<input type="button" value="Remove Closed" id="btnRemoveClosed">
 	<ol id="olTaskList">
-		<li>This is task -1</li>
-		<li class="closed" id="task-2">This is task -2</li>
+		
 	</ol>
 </body>
 </html>

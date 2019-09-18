@@ -13,10 +13,17 @@
 	</style>
 	<script src="jquery-3.4.1.js"></script>
 	<script>
+		jQuery.fn.extend({
+			toInt : function(){
+				var value = parseInt($(this).first().val());
+				return isNaN(value) ? 0 : value;
+			}
+		});
+
 		$(function(){
 			function calculate(){
-				var n1 = parseInt($('#txtNumber1').val()),
-					n2 = parseInt($('#txtNumber2').val()),
+				var n1 = $('#txtNumber1').toInt(),
+					n2 = $('#txtNumber2').toInt(),
 					operator = $('#selectOperator').val(),
 					result = 0;
 
